@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React 18 -->
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+      // 类组件
+
+      class App extends React.Component {
+        // 组件数据
+
+        constructor() {
+          super()
+          this.state = {
+            message: '电影列表',
+            movies: ['星际川渝', '大话西游', '孙悟空', '猪八戒'],
+          }
+          this.btnClick = this.btnClick.bind(this)
+        }
+        // 组件方法
+        btnClick() {
+          //1. 将state中的 message的值修改掉，2. 自动重新执行render函数
+          this.setState({
+            message: 'hello,react',
+          })
+        }
+
+        // render方法
+        render() {
+          // console.log(this)
+          // const lis = []
+          // for (let i = 0; i < this.state.movies.length; i++) {
+          //   lis.push(<li>{this.state.movies[i]}</li>)
+          // }
+          // console.log('lis', lis)
+
+          return (
+            <div>
+              <h2>{this.state.message}</h2>
+              <ul>
+                {this.state.movies.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+              <button onClick={this.btnClick}>修改文本</button>
+            </div>
+          )
+        }
+      }
+      const root = ReactDOM.createRoot(document.getElementById('root'))
+      root.render(<App />)
+    </script>
+  </body>
+</html>

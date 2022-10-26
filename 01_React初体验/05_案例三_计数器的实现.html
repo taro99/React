@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React 18 -->
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+      // 类组件
+
+      class App extends React.Component {
+        // 组件数据
+
+        constructor() {
+          super()
+          this.state = {
+            message: 100,
+          }
+          this.increment = this.increment.bind(this)
+          this.decrement = this.decrement.bind(this)
+        }
+
+        increment() {
+          this.setState({
+            message: this.state.message + 1,
+          })
+        }
+        decrement() {
+          this.setState({
+            message: this.state.message - 1,
+          })
+        }
+        // render方法
+        render() {
+          return (
+            <div>
+              <h2>{this.state.message}</h2>
+              <button onClick={this.increment}>+</button>
+              <button onClick={this.decrement}>-</button>
+            </div>
+          )
+        }
+      }
+      const root = ReactDOM.createRoot(document.getElementById('root'))
+      root.render(<App />)
+    </script>
+  </body>
+</html>
